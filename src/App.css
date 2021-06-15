@@ -1,0 +1,102 @@
+#root{
+  height: 100vh;
+  background-image: url("./assets/TranscodedWallpaper.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.container {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+#root .container{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+.todo-list{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 30px;
+  border: white solid 3px;
+  overflow-y: scroll;
+  padding: 30px;
+}
+.todo-list::-webkit-scrollbar-track{
+  background: rgb(123,47,119);
+  border-radius: 30px;
+  padding: 200px 0px;
+}
+.todo-list::-webkit-scrollbar{
+  border-radius: 30px;
+  background: rgb(141, 111, 123);
+}
+.todo-list::-webkit-scrollbar-thumb{
+  border-radius: 30px;
+  background: rgb(239,81,158);
+  border: white solid 3px;
+}
+.todo-element{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.todo-form-add{
+  width: 45%;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.todo-element-text{
+  color: white;
+  font-size: 30px;
+  max-width: 30%;
+  word-wrap: break-word;
+  border-bottom: white solid 3px;
+  
+}
+.form-element-constraction{
+  width: 170px;
+  height: 40px;
+  background: transparent;
+  color: white;
+  font-size: 30px;
+  border: white solid 3px;
+  border-radius: 30px;
+  outline: none;
+}
+.form-element-description{
+  width: 340px;
+  height: 120px;
+}
+.form-element-description::-webkit-scrollbar-track{
+  background: rgb(123,47,119);
+  border-radius: 30px;
+  padding: 200px 0px;
+}
+.form-element-description::-webkit-scrollbar{
+  border-radius: 30px;
+  background: rgb(141, 111, 123);
+}
+.form-element-description::-webkit-scrollbar-thumb{
+  border-radius: 30px;
+  background: rgb(239,81,158);
+  border: white solid 3px;
+}
+.submit-input{
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 3px solid white;
+  outline: none;
+  border-radius: 30px;
+}
+.test{
+  cursor: text;
+  background: transparent;
+}
