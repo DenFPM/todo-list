@@ -8,7 +8,7 @@ const TodoList = ({todos, handleChangeTodo}) => {
         <TodoElement
           key={id}
           id={id}
-          todo={title}
+          title={title}
           description={description}
           isReady={isReady}
           handleChangeTodo={handleChangeTodo}
