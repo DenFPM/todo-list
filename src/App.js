@@ -17,14 +17,43 @@ function App() {
       { id: randomId(), title, description, isReady },
     ]);
   };
-
-  const changeTodo = (newTodoForChange) => {
+  // const handleChangeIsReady = (id, value)=>{
+  //   setTodos(todos.map((todo)=>{
+  //     if (todo.id === id) {
+  //       const tempObj = { ...todo };
+  //       tempObj.isReady = value;
+  //       return tempObj;
+  //     }
+  //     return todo;
+  //   }))
+  // }
+  // const handleChangeDescription = (id, value)=>{
+  //   setTodos(todos.map((todo)=>{
+  //     if (todo.id === id) {
+  //       const tempObj = { ...todo };
+  //       tempObj.description = value;
+  //       return tempObj;
+  //     }
+  //     return todo;
+  //   }))
+  // }
+  // const handleChangeTitle = (id, value)=>{
+  //   setTodos(todos.map((todo)=>{
+  //     if (todo.id === id) {
+  //       const tempObj = { ...todo };
+  //       tempObj.title = value;
+  //       return tempObj;
+  //     }
+  //     return todo;
+  //   }))
+  // }
+  const changeTodo = ({newTitle,newIsReady,newDescription,id}) => {
     setTodos(todos.map((todo) => {
-      if (todo.id === todoIdForChange) {
+      if (todo.id === id) {
         const tempObj = { ...todo };
-        tempObj.title = newTodoForChange.title;
-        tempObj.description = newTodoForChange.description;
-        tempObj.isReady = newTodoForChange.isReady;
+        tempObj.title = newTitle;
+        tempObj.description = newDescription;
+        tempObj.isReady = newIsReady;
         return tempObj;
       }
       return todo;
@@ -34,10 +63,10 @@ function App() {
 
   return (
     <div className="container">
-      <TodoList todos={todos} handleChangeTodo={setTodoIdForChange} />
+      <TodoList todos={todos} handleChangeTodo={changeTodo}/>
       <div className="todo-form-add">
         <AddNewTodos handleAddTodos={handleSetTodos} />
-        {todoIdForChange !== "" && <ChangeTodo handleChangeTodo={changeTodo} />}
+        {/* {todoIdForChange !== "" && <ChangeTodo handleChangeTodo={changeTodo} />} */}
       </div>
     </div>
   );

@@ -15,14 +15,14 @@
   height: 100%;
 }
 .todo-list{
-  width: 45%;
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 30px;
   border: white solid 3px;
   overflow-y: scroll;
-  padding: 30px;
+  padding: 30px 15px;
 }
 .todo-list::-webkit-scrollbar-track{
   background: rgb(123,47,119);
@@ -41,8 +41,14 @@
 .todo-element{
   width: 100%;
   display: flex;
-  justify-content: space-between;
- 
+  justify-content: space-around;
+  height: 60px;
+  align-items: center;
+  
+}
+.todo-element:hover{
+  background: tomato;
+  border-radius: 30px;
 }
 .todo-form-add{
   width: 45%;
@@ -55,11 +61,25 @@
 .todo-element-text{
   color: white;
   font-size: 30px;
-  max-width: 30%;
+  max-width: 150px;
   word-wrap: break-word;
   border-bottom: white solid 3px;
   
 }
+.todo-description {
+  height:40px;
+  border: white solid 3px;
+}
+::-moz-placeholder {
+  line-height:60px;
+}
+::-webkit-input-placeholder {
+  line-height:60px;
+}
+:-ms-input-placeholder {
+  line-height:60px;
+}
+
 .form-element-constraction{
   width: 170px;
   height: 40px;
@@ -97,6 +117,15 @@
   border-radius: 30px;
 }
 .test{
-  cursor: text;
+  outline: none;
+  border: none;
+  cursor:pointer;
+  pointer-events: all;
   background: transparent;
+}
+.to-change{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  border: white;
 }

@@ -1,18 +1,44 @@
-import React from "react";
+
+import React, { useEffect, useState} from "react";
 
 const TodoElement = ({ todo, description, isReady,id, handleChangeTodo }) => {
+  const [newTitle, setNewTitle] = useState('')
+  const [newIsReady, setNewIsReady] = useState()
+  const [newDescription, setNewDecription] = useState('')
+
+  const [isReadOnly, setIsReadOnly] = useState(true)
+
+  useEffect(()=>{
+    setNewDecription(description)
+  },[description])
+
+  useEffect(()=>{
+    setNewIsReady(isReady)
+  },[isReady])
+
+  useEffect(()=>{
+    setNewTitle(todo)
+  },[todo])
+
+  const handleChangeCurrentTodo = (currentId, isCanChanges)=>{
+    if(currentId===id&&isCanChanges){
+      setIsReadOnly(false)
+    }
+    if(!isCanChanges){
+      setIsReadOnly(true)
+      handleChangeTodo({newTitle,newIsReady,newDescription,id})
+    }
+  }
+
   return (
-    <li className="todo-element" onClick={(event)=>handleChangeTodo(event.target.id)} id={id}>
-      <p className="todo-element-text">{todo}</p>
-      <p className="todo-element-text">{description}</p>
-      <p className="todo-element-text">{isReady?"complited":"in progress"}</p>
+    <li className="todo-element" id={id}>
+      <input className="todo-element-text test" value={newTitle}   onChange={event=>setNewTitle(event.target.value)} readOnly={isReadOnly}/>
+      <textarea className="todo-element-text test todo-description" value={newDescription}  onChange={event=>setNewDecription(event.target.value)} readOnly={isReadOnly}/>
+      <input className="todo-element-text test" value={newIsReady?"complited":"in progress"} onClick={()=>setNewIsReady(!newIsReady)} readOnly={isReadOnly}/>
+      <input className="submit-input" type="checkbox" onClick={(event)=>handleChangeCurrentTodo(event.nativeEvent.path[1].id, event.target.checked)} />
+      
     </li>
   );
 };
 export default TodoElement;
-{/* <li className="todo-element" onClick={(event)=>handleChangeTodo(event.target.id)} id={id}>
-      <input className="todo-element-text test" value={todo}  onChange={handleChangeTitle}/>
-      <input className="todo-element-text test" value={description}  onChange={handleChangeDescription}/>
-      <p className="todo-element-text">{isReady?"complited":"in progress"}</p>
-      <input className="todo-element-text" type="checkbox" value={isReady}  onChange={handleChangeIsReady} readOnly={true}/>
-    </li> */}
+//(event)=>handleChangeIsReady(event.nativeEvent.path[1].id, event.target.value)
