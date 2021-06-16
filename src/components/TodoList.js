@@ -1,7 +1,7 @@
 import React from "react";
 import TodoElement from "./TodoElement";
 
-const TodoList = ({todos, handleChangeTodo}) => {
+const TodoList = ({ todos, handleChangeTodo }) => {
   return (
     <ul className="todo-list">
       {todos.map(({ title, description, isReady, id }) => (

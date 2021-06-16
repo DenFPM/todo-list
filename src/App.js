@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import AddNewTodos from "./components/AddNewTodo";
@@ -15,23 +15,25 @@ function App() {
       { id: randomId(), title, description, isReady },
     ]);
   };
-  
-  const changeTodo = ({newTitle,newIsReady,newDescription,id}) => {
-    setTodos(todos.map((todo) => {
-      if (todo.id === id) {
-        const tempObj = { ...todo };
-        tempObj.title = newTitle;
-        tempObj.description = newDescription;
-        tempObj.isReady = newIsReady;
-        return tempObj;
-      }
-      return todo;
-    }))
+
+  const changeTodo = ({ newTitle, newIsReady, newDescription, id }) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          const tempObj = { ...todo };
+          tempObj.title = newTitle;
+          tempObj.description = newDescription;
+          tempObj.isReady = newIsReady;
+          return tempObj;
+        }
+        return todo;
+      })
+    );
   };
 
   return (
     <div className="container">
-      <TodoList todos={todos} handleChangeTodo={changeTodo}/>
+      <TodoList todos={todos} handleChangeTodo={changeTodo} />
       <div className="todo-form-add">
         <AddNewTodos handleAddTodos={handleSetTodos} />
       </div>
