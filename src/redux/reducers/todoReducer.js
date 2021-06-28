@@ -1,5 +1,5 @@
 const initState = {
-  todosArr: [],
+  todosArr: []
 };
 const todosData = (state = initState, action) => {
   switch (action.type) {
