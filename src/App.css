@@ -108,8 +108,11 @@
   background: rgb(239,81,158);
   border: white solid 3px;
 }
-.submit-input{
+.submit-input-form{
   margin-bottom: 20px;
+}
+.submit-input{
+  
   width: 40px;
   height: 40px;
   background: transparent;

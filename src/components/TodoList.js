@@ -1,7 +1,7 @@
 import React from "react";
 import TodoElement from "./TodoElement";
 import { useSelector } from "react-redux";
-const TodoList = ({ handleChangeTodo }) => {
+const TodoList = () => {
   const { isSetOldTodos, todosArr, oldTodosArr } = useSelector(
     ({ todosData }) => todosData
   );
@@ -16,7 +16,6 @@ const TodoList = ({ handleChangeTodo }) => {
               title={title}
               description={description}
               isReady={isReady}
-              handleChangeTodo={handleChangeTodo}
             />
           ))
         : todosArr.map(({ title, description, isReady, id }) => (
@@ -26,7 +25,6 @@ const TodoList = ({ handleChangeTodo }) => {
               title={title}
               description={description}
               isReady={isReady}
-              handleChangeTodo={handleChangeTodo}
             />
           ))}
     </ul>
