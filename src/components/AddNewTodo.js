@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setIsOldTodos } from "../redux/actions/setTodoActions";
 
 const AddNewTodos = ({ handleAddTodos }) => {
+  const dispatch = useDispatch();
+
   const [isReady, setIsReady] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +35,12 @@ const AddNewTodos = ({ handleAddTodos }) => {
         className="form-element-constraction"
       >
         submit
+      </button>
+      <button
+        onClick={() => dispatch(setIsOldTodos())}
+        className="form-element-constraction"
+      >
+        step to back
       </button>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import AddNewTodos from "./components/AddNewTodo";
-import { setTodosData } from "./redux/actions/setTodoActions";
+import { setTodosData,changeTodosData} from "./redux/actions/setTodoActions";
 import { useSelector, useDispatch } from "react-redux";
 const randomId = () => {
   return Math.random().toString(20).substr(2, 9);
@@ -11,12 +11,8 @@ function App() {
   const [todos, setTodos] = useState([]);
   
   const dispatch = useDispatch();
-  const {todosArr}= useSelector(({ todosData }) => todosData);
-  // {todosArr} = useSelector(({ todosData }) => todosData);
+  const {todosArr, oldTodosArr} = useSelector(({ todosData }) => todosData);
 
-  useEffect(() => {
-    console.log(todosArr);
-  }, [todosArr]);
 
   const handleSetTodos = (title, description, isReady) => {
     const newTodo = { id: randomId(), title, description, isReady };
@@ -25,18 +21,21 @@ function App() {
   };
 
   const changeTodo = ({ newTitle, newIsReady, newDescription, id }) => {
+    let tempTodosArr = todos.map((todo) => {
+      if (todo.id === id) {
+        const tempObj = { ...todo };
+        tempObj.title = newTitle;
+        tempObj.description = newDescription;
+        tempObj.isReady = newIsReady;
+        return tempObj;
+      }
+      return todo;
+    })
+
     setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          const tempObj = { ...todo };
-          tempObj.title = newTitle;
-          tempObj.description = newDescription;
-          tempObj.isReady = newIsReady;
-          return tempObj;
-        }
-        return todo;
-      })
+      tempTodosArr
     );
+    dispatch(changeTodosData([tempTodosArr]))
   };
 
   return (
