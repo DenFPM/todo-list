@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector  } from "react-redux";
+import { changeTodosData } from "../redux/actions/setTodoActions";
 
-const TodoElement = ({ title, description, isReady, id, handleChangeTodo }) => {
+const TodoElement = ({ title, description, isReady, id }) => {
+  const dispatch = useDispatch();
+  const { todosArr } = useSelector(({ todosData }) => todosData);
+
   const [newTitle, setNewTitle] = useState("");
   const [newIsReady, setNewIsReady] = useState();
   const [newDescription, setNewDecription] = useState("");
 
   const [isReadOnly, setIsReadOnly] = useState(true);
+
+  const changeTodo = ({ newTitle, newIsReady, newDescription, id }) => {
+    let tempTodosArr = todosArr.map((todo) => {
+      if (todo.id === id) {
+        const tempObj = { ...todo };
+        tempObj.title = newTitle;
+        tempObj.description = newDescription;
+        tempObj.isReady = newIsReady;
+        return tempObj;
+      }
+      return todo;
+    });
+
+    dispatch(changeTodosData([tempTodosArr]));
+  };
 
   useEffect(() => {
     setNewDecription(description);
@@ -25,7 +45,7 @@ const TodoElement = ({ title, description, isReady, id, handleChangeTodo }) => {
     }
     if (!isCanChanges) {
       setIsReadOnly(true);
-      handleChangeTodo({ newTitle, newIsReady, newDescription, id });
+      changeTodo({ newTitle, newIsReady, newDescription, id });
     }
   };
 

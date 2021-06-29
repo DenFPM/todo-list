@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setIsOldTodos } from "../redux/actions/setTodoActions";
-
-const AddNewTodos = ({ handleAddTodos }) => {
+import { useDispatch, useSelector  } from "react-redux";
+import { setIsOldTodos , setTodosData} from "../redux/actions/setTodoActions";
+const randomId = () => {
+  return Math.random().toString(20).substr(2, 9);
+};
+ 
+const AddNewTodos = () => {
   const dispatch = useDispatch();
-
+  const { todosArr } = useSelector(({ todosData }) => todosData);
+  
   const [isReady, setIsReady] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const handleSetTodos = (title, description, isReady) => {
+    dispatch(setTodosData([...todosArr, { id: randomId(), title, description, isReady }]));
+  };
   return (
     <div className="todo-form-add" style={{ marginBottom: "50px" }}>
       <label>title</label>
@@ -31,14 +39,14 @@ const AddNewTodos = ({ handleAddTodos }) => {
         onChange={(event) => setIsReady(event.target.checked)}
       />
       <button
-        onClick={() => handleAddTodos(title, description, isReady)}
+        onClick={() => handleSetTodos(title, description, isReady)}
         className="form-element-constraction"
       >
         submit
       </button>
       <button
         onClick={() => dispatch(setIsOldTodos())}
-        className="form-element-constraction"
+        className="form-element-constraction "
       >
         step to back
       </button>
