@@ -13,8 +13,8 @@ const todosData = (state = initState, action) => {
     case "CHANGE_NEW_TODOS_DATA":
       return {
         ...state,
-        oldTodosArr: state.todosArr,
-        todosArr: action.payload[0],
+        oldTodosArr: action.oldTodosArr,
+        todosArr: action.todosArr,
       };
     case "SET_IS_OLD_TODOS":
       return {

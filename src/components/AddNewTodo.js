@@ -10,7 +10,7 @@ const openNotification = (notificationType, title, description) => {
     title: <span>{title}</span>,
     description: <span>{description}</span>,
   });
-}
+};
 const AddNewTodos = () => {
   const dispatch = useDispatch();
   const { todosArr } = useSelector(({ todosData }) => todosData);
@@ -20,12 +20,16 @@ const AddNewTodos = () => {
   const [description, setDescription] = useState("");
 
   const handleSetTodos = (title, description, isReady) => {
-    if(title.length<3){
-      openNotification('error', 'Error', 'title must be longer for 3 letters')
+    if (title.length < 3) {
+      openNotification("error", "Error", "title must be longer for 3 letters");
       return;
     }
-    if(description.length<3){
-      openNotification('error', 'Error', 'description must be longer for 6 letters')
+    if (description.length < 3) {
+      openNotification(
+        "error",
+        "Error",
+        "description must be longer for 6 letters"
+      );
       return;
     }
     dispatch(
@@ -50,7 +54,7 @@ const AddNewTodos = () => {
         onChange={(event) => setDescription(event.target.value)}
       />
       <label>ready?</label>
-       
+
       <input
         className="submit-input submit-input-form"
         type="checkbox"
@@ -65,7 +69,9 @@ const AddNewTodos = () => {
       </button>
       <button
         onClick={() => {
-          todosArr.length ? dispatch(setIsOldTodos()):openNotification('error', 'Error', 'emptiness behind')
+          todosArr.length
+            ? dispatch(setIsOldTodos())
+            : openNotification("error", "Error", "emptiness behind");
         }}
         className="form-element-constraction "
       >

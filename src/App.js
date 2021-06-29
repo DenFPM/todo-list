@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import AddNewTodos from "./components/AddNewTodo";
 
 function App() {
- 
   return (
     <div className="container">
-      <TodoList  />
+      <TodoList />
       <div className="todo-form-add">
         <AddNewTodos />
       </div>

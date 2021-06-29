@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeTodosData } from "../redux/actions/setTodoActions";
 
 const TodoElement = ({ title, description, isReady, id }) => {
@@ -24,7 +24,7 @@ const TodoElement = ({ title, description, isReady, id }) => {
       return todo;
     });
 
-    dispatch(changeTodosData([tempTodosArr]));
+    dispatch(changeTodosData(tempTodosArr, todosArr));
   };
 
   useEffect(() => {
