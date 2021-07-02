@@ -7,9 +7,7 @@ function App() {
   return (
     <div className="container">
       <TodoList />
-      <div className="todo-form-add">
-        <AddNewTodos />
-      </div>
+      <AddNewTodos />
     </div>
   );
 }

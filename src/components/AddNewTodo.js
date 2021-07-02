@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOldTodos, setTodosData } from "../redux/actions/setTodoActions";
-import { Notification } from "rsuite";
-const randomId = () => {
-  return Math.random().toString(20).substr(2, 9);
-};
-const openNotification = (notificationType, title, description) => {
-  Notification[notificationType]({
-    title: <span>{title}</span>,
-    description: <span>{description}</span>,
-  });
-};
+
+// Utils
+import { openNotification } from '../utils/openNotification'
+import { randomId } from '../utils/generateId'
+
+
 const AddNewTodos = () => {
   const dispatch = useDispatch();
   const { todosArr } = useSelector(({ todosData }) => todosData);
@@ -33,50 +29,54 @@ const AddNewTodos = () => {
       return;
     }
     dispatch(
+      // @TODO move this logic to reducer
       setTodosData([
         ...todosArr,
         { id: randomId(), title, description, isReady },
       ])
     );
   };
-  return (
-    <div className="todo-form-add" style={{ marginBottom: "50px" }}>
-      <label>title</label>
-      <input
-        className="form-element-constraction"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
-      <label>description</label>
-      <textarea
-        className="form-element-constraction form-element-description"
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
-      <label>ready?</label>
 
-      <input
-        className="submit-input submit-input-form"
-        type="checkbox"
-        checked={isReady}
-        onChange={(event) => setIsReady(event.target.checked)}
-      />
-      <button
-        onClick={() => handleSetTodos(title, description, isReady)}
-        className="form-element-constraction"
-      >
-        submit
-      </button>
-      <button
-        onClick={() => {
-          todosArr.length
-            ? dispatch(setIsOldTodos())
-            : openNotification("error", "Error", "emptiness behind");
-        }}
-        className="form-element-constraction "
-      >
-        step to back
-      </button>
+  return (
+    <div className="todo-form-add">
+      <div className="todo-form-add" style={{ marginBottom: "50px" }}>
+        <label>title</label>
+        <input
+          className="form-element-constraction"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <label>description</label>
+        <textarea
+          className="form-element-constraction form-element-description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        <label>ready?</label>
+
+        <input
+          className="submit-input submit-input-form"
+          type="checkbox"
+          checked={isReady}
+          onChange={(event) => setIsReady(event.target.checked)}
+        />
+        <button
+          onClick={() => handleSetTodos(title, description, isReady)}
+          className="form-element-constraction"
+        >
+          submit
+        </button>
+        <button
+          onClick={() => {
+            todosArr.length
+              ? dispatch(setIsOldTodos())
+              : openNotification("error", "Error", "emptiness behind");
+          }}
+          className="form-element-constraction "
+        >
+          step to back
+        </button>
+      </div>
     </div>
   );
 };

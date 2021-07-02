@@ -18,6 +18,7 @@ const TodoList = () => {
               isReady={isReady}
             />
           ))
+        // @TODO render todos from one place
         : todosArr.map(({ title, description, isReady, id }) => (
             <TodoElement
               key={id}

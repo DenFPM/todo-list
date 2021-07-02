@@ -6,6 +6,7 @@ const TodoElement = ({ title, description, isReady, id }) => {
   const dispatch = useDispatch();
   const { todosArr } = useSelector(({ todosData }) => todosData);
 
+  // @TODO merge to one object, ex {name: nameExample, description: descriptionExample, isReady: isReadyExample}
   const [newTitle, setNewTitle] = useState("");
   const [newIsReady, setNewIsReady] = useState();
   const [newDescription, setNewDecription] = useState("");
@@ -14,6 +15,7 @@ const TodoElement = ({ title, description, isReady, id }) => {
 
   const changeTodo = ({ newTitle, newIsReady, newDescription, id }) => {
     let tempTodosArr = todosArr.map((todo) => {
+      // @TODO move this logic to reducer
       if (todo.id === id) {
         const tempObj = { ...todo };
         tempObj.title = newTitle;
@@ -50,11 +52,13 @@ const TodoElement = ({ title, description, isReady, id }) => {
   };
 
   return (
+    // @TODO remove selector id from dom to native
     <li className="todo-element" id={id}>
       <input
         className="todo-element-text test"
         value={newTitle}
-        onChange={(event) => setNewTitle(event.target.value)}
+        // @TODO Tips
+        onChange={({target: {value}}) => setNewTitle(value)}
         readOnly={isReadOnly}
       />
       <textarea
@@ -73,6 +77,7 @@ const TodoElement = ({ title, description, isReady, id }) => {
         className="submit-input"
         type="checkbox"
         onClick={(event) =>
+          // @TODO remove selector id from dom to native
           handleChangeCurrentTodo(
             event.nativeEvent.path[1].id,
             event.target.checked

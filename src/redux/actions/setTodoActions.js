@@ -4,6 +4,7 @@ export const setTodosData = (payload) => ({
 });
 export const changeTodosData = (todosArr, oldTodosArr) => ({
   type: "CHANGE_NEW_TODOS_DATA",
+  // @TODO merge props to one payload
   todosArr,
   oldTodosArr,
 });
